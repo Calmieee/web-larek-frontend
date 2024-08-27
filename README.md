@@ -40,3 +40,98 @@ npm run build
 ```
 yarn build
 ```
+
+
+## Базовые интерфейсы и типы данных
+
+###  Model
+| IProductList`<T>`| 
+|----------|
+| total: `number`| 
+| items: `T[]`|
+
+| IProductItem | 
+|--------------|
+| id: `string` | 
+| description: `string` | 
+| image: `string` | 
+| title: `string` | 
+| category: `string` | 
+| price: `number` | 
+
+
+| IBasket | 
+|--------------|
+| BasketList: `Record<string, number>` | 
+| countProductItemInList: `number` | 
+| _totalPrice(): `number` | 
+| appendProduct(id: `string`): `void` | 
+| removeProduct(id: `string`): `void` | 
+
+
+| IOrderDetails | 
+|--------------|
+| payment: `string` | 
+| email: `string` | 
+| phone: `string` | 
+| address: `string` | 
+| total: `number` | 
+| items: `string[]` | 
+|setOrderDetails(details: `{}`): `{}`|
+
+### API
+
+| API`<T>` | 
+|--------------|
+| baseUrl: `string` | 
+| headers: `T{}` | 
+| handleResponce(response: `Response`): `Promise<object>` | 
+| get(uri: `string`): `handleResponce` | 
+| post(uri: `string`, data: `object`, method: `apiPostMethods`): `handleResponce` | 
+
+| ErrorState | 
+|------------|
+| error: `string` | 
+
+| ApiPostMethods |
+|----------------|
+| `POST` |
+| `PUT` |
+| `DELETE` |
+
+
+### View 
+
+| IView`<T, S = object>` | 
+|------------------------|
+| element: `HTMLElement` | 
+| copy(settings?: `S`): `IView<T>` | 
+| render(data?: `Partial<T>`): `HTMLElement` | 
+
+| IViewConstructor`<T, S>` | 
+|--------------------------|
+| new(root: `HTMLElement`, settings: `S`): `IView<T>` | 
+
+| ClickableEvent`<T>` |
+|----------------------|
+| `{ event: MouseEvent; item?: T }` |
+
+| IClickable`<T>` | 
+|-----------------|
+| onClick: (args: `IClickableEvent<T>`): `void` | 
+
+| ChangeableEvent`<T>` |
+|-----------------------|
+| `{ event: Event; value?: T }` |
+
+| IChangeable`<T>` | 
+|------------------|
+| onChange: (args: `IChangeableEvent<T>`): `void` | 
+
+| SelectableEvent`<T>` |
+|-----------------------|
+| `{ event: Event; value?: T }` |
+
+| ISelectable`<T>` | 
+|------------------|
+| onSelect: (args: `ISelectableEvent<T>`): `void` |
