@@ -1,7 +1,7 @@
 export type ApiPostMethods = 'POST' | 'PUT' | 'DELETE';
 
 export interface ErrorState {
-    error: string
+    error: string;
 }
 
 export interface HandleResponce {
