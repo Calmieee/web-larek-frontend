@@ -1,4 +1,4 @@
-import { ApiPostMethods } from "../../types/components/base/api";
+import { ApiPostMethods } from '../../types/components/base/api';
 
 export class Api {
     readonly baseUrl: string;
