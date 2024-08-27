@@ -1,7 +1,4 @@
-import {EventName} from '../../types/components/base/events'
-import {Subscriber} from '../../types/components/base/events'
-import {EmitterEvent} from '../../types/components/base/events'
-import {IEvents} from '../../types/components/base/events'
+import {IEvents, EventName, Subscriber, EmitterEvent} from '../../types/components/base/events'
 /**
  * Брокер событий, классическая реализация
  * В расширенных вариантах есть возможность подписаться на все события
