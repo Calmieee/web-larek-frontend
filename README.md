@@ -81,13 +81,18 @@ yarn build
 
 ### API
 
-| API`<T>` | 
+| HandleResponce | 
+|------------|
+| handleResponce(response: `Response`):`Promise<object>`|
+
+| Api`<T extends object>` extends HandleResponce | 
 |--------------|
 | baseUrl: `string` | 
-| headers: `T{}` | 
-| handleResponce(response: `Response`): `Promise<object>` | 
+| headers: `T` | 
 | get(uri: `string`): `handleResponce` | 
 | post(uri: `string`, data: `object`, method: `apiPostMethods`): `handleResponce` | 
+
+
 
 | ErrorState | 
 |------------|
