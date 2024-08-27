@@ -1,4 +1,4 @@
-export interface ComponentView<T> {
+export interface IComponentView<T> {
     toggleClass(element: HTMLElement, className: string): void
     setTextContent(element: HTMLElement, value: unknown): void
     setStatusDisabled(element: HTMLElement, state: boolean): void
