@@ -44,4 +44,4 @@ yarn build
 ## Архитектура
 
 ### UML-схема классов и их связей
-![alt text](image-1.png)
+![alt text](image.png)
