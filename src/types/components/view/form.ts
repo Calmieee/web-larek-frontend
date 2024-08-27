@@ -6,5 +6,5 @@ interface IFormState {
 export interface IFormView<T> {
     buttonSumbit: HTMLButtonElement;
     error: HTMLElement;
-    render(state: Partial<T> & IFormState): HTMLElement
+    render(state: Partial<T> & IFormState): HTMLElement;
 }
