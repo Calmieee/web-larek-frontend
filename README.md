@@ -44,10 +44,26 @@ yarn build
 ## Архитектура
 ### UML-схема классов и их связей
 ![alt text](image.png)
-Выбран принцип MVP. 
-Взаимодействие происходит через брокер событий.
+Выбран принцип MVP с брокером событий.
+Слой модели подготавливает данные для отображения, а класс отображения показывает изменённые данные, которые этому классу предоставляются с помощью метода emit класса EventEmitter.
+Взаимодействие классов отображение происходит только через методы класса Eventemitter.
 
 ### События
+```ts
+enum Events {
+    cardClick,
+    CloseButtonModalClick,
+    InBasketButtonClick,
+    countItemBasketListener,
+    basketClick,
+    registerButtonClick,
+    methodPaymentListener,
+    formValidyListener,
+    nextButtonClick,
+    payButtonClick,
+    successCloseButtonClick
+}
+```
 ---
 1. **Клик по карточке товара** - обработчик передаёт данные объекта Card в CardView, где далее формируется контент и открывается модальное окно с этим контентом.
 
