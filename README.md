@@ -148,8 +148,10 @@ enum Events {
 #### Базовые:
 **api.ts**
 ```ts
+//тип, описывающий методы для отправки данных
 type ApiPostMethods = 'POST' | 'PUT' | 'DELETE';
 
+//тип, описывающий присылаемые данные с сервера методом GET
 type ApiListResponse<Type> = {
     total: number,
     items: Type[]
@@ -158,6 +160,7 @@ type ApiListResponse<Type> = {
 **component.ts**
 
 ```ts
+//Интерфейс, описывающий абстрактный компонент
 interface IComponentView<T> {
     toggleClass(element: HTMLElement, className: string): void
     setTextContent(element: HTMLElement, value: unknown): void
@@ -165,18 +168,18 @@ interface IComponentView<T> {
     toggleVisibility(element: HTMLElement): void
     setImage(element: HTMLImageElement, src: string, alt?: string): void
     render(data?: Partial<T>): HTMLElement
+}
 ```
 
 **events.ts**
 
 ```ts
+//тип, описывающий название события
 type EventName = string | RegExp;
+//тип, описывающий подписчика на событие
 type Subscriber = Function;
-type EmitterEvent = {
-    eventName: string,
-    data: unknown
-};
 
+//Интерфейс, описывающий методы брокера событий
 interface IEvents {
     on<T extends object>(event: EventName, callback: (data: T) => void): void;
     emit<T extends object>(event: string, data?: T): void;
@@ -187,6 +190,7 @@ interface IEvents {
 **model.ts**
 
 ```ts
+//Интерфейс, описывающий абстрактный класс Model
 interface IModel<T> {
     emitChanges(event: string, payload?: object): void
 }
@@ -195,6 +199,7 @@ interface IModel<T> {
 #### Модели данных:
 
 ```ts
+//Интерфейс, описывающий объект карточки
 interface ICard {
     id: string;
     description: string;
@@ -203,12 +208,12 @@ interface ICard {
     category: string;
     price: number;
 }
-
+//дополнительный интерфейс для формата записи в корзину
 interface dataCardforBasket {
     title: string;
     price: number;
 }
-// '_'  - static
+//Интерфейс, описывающий состояние приложения
 interface IAppState<T extends ICard, U extends Object> {
     _cardCatalog: T[];
     _basket: Record<string, dataCardforBasket>;
@@ -230,16 +235,17 @@ interface IAppState<T extends ICard, U extends Object> {
 #### Отображения:
 
 ```ts
+//Интерфейс, описывающий корзину
 interface IBasket {
     _basketList: HTMLElement;
     button: HTMLButtonElement;
     totalPrice: string;
 }
-
+//Интерфейс, описывающий счётчик элементов корзины
 interface IBasketItemView {
     index: number;
 }
-
+//Интерфейс, описывающий карточку
 interface ICardView {
     id: string;
     description: string;
@@ -249,29 +255,29 @@ interface ICardView {
     price: string;
     button: HTMLButtonElement;
 }
-
+//Интерфейс, описывающий состояния валидации формы
 interface IFormState {
     valid: boolean;
     errors: string[];
 }
-
+//Интерфейс, описывающий форму
 interface IFormView<T> {
     buttonSumbit: HTMLButtonElement;
     error: HTMLElement;
     render(state: Partial<T> & IFormState): HTMLElement;
 }
-
+//Интерфейс, описывающий заказ
 interface IOrderView {
     SwitchPaymentButtons: HTMLButtonElement[];
 }
-
+//Интерфейс, описывающий страницу
 interface IPageView {
     counterItemBasket: HTMLElement;
     catalog: HTMLElement;
     darkenedWrapper: HTMLElement;
     basket: HTMLElement;  
 }
-
+//Интерфейс, описывающий успешное выполнение
 interface ISuccessView {
     title: HTMLElement;
     description: HTMLElement;
