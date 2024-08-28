@@ -7,9 +7,9 @@
 - src/components/ — папка с JS компонентами
 - src/components/base/ — папка с базовым кодом
 
-Важные файлы:
+Важные файлы/папки:
 - src/pages/index.html — HTML-файл главной страницы
-- src/types/index.ts — файл с типами
+- src/types/ — папка с типами
 - src/index.ts — точка входа приложения
 - src/styles/styles.scss — корневой файл стилей
 - src/utils/constants.ts — файл с константами
@@ -42,6 +42,9 @@ yarn build
 ```
 
 ## Архитектура
-
 ### UML-схема классов и их связей
-![alt text](image.png)
+![alt text](image-1.png)
+
+Выбран принцип MVP. Цепочка действий происходит следующим образом:
+V --> P --> M --> P --> V   
+Взаимодействие происходит через брокер событий.
