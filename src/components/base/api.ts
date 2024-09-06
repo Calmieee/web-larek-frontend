@@ -1,4 +1,9 @@
-import { ApiPostMethods } from '../../types/components/base/api';
+type ApiListResponse<Type> = {
+    total: number,
+    items: Type[]
+};
+
+type ApiPostMethods = 'POST' | 'PUT' | 'DELETE';
 
 export class Api {
     readonly baseUrl: string;
