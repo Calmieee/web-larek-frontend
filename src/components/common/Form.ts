@@ -2,19 +2,19 @@ import {Component} from "../base/component";
 import {IEvents} from "../base/events";
 import { ensureElement } from "../../utils/utils";
 
-interface IFormState {
+export interface IFormState {
     valid: boolean;
     errors: string[];
 }
 
-export class Form<T> extends Component<IFormState> {
-    protected _submit: HTMLButtonElement;
+export class Form<T> extends Component<IFormState>{
+    protected _buttonSumbit: HTMLButtonElement;
     protected _errors: HTMLElement;
 
     constructor(protected container: HTMLFormElement, protected events: IEvents) {
         super(container);
 
-        this._submit = ensureElement<HTMLButtonElement>('button[type=submit]', this.container);
+        this._buttonSumbit = ensureElement<HTMLButtonElement>('button[type=submit]', this.container);
         this._errors = ensureElement<HTMLElement>('.form__errors', this.container);
 
         this.container.addEventListener('input', (e: Event) => {
@@ -24,7 +24,7 @@ export class Form<T> extends Component<IFormState> {
             this.onInputChange(field, value);
         });
 
-        this._submit.addEventListener('click', (e: Event) => {
+        this._buttonSumbit.addEventListener('click', (e: Event) => {
             e.preventDefault();
             this.events.emit(`${this.container.name}:submit`);
         });
@@ -39,7 +39,7 @@ export class Form<T> extends Component<IFormState> {
     }
 
     set valid(value: boolean) {
-        this.setStatusDisabled(this._submit, !value);
+        this.setStatusDisabled(this._buttonSumbit, !value);
     }
 
     set errors(value: string) {
