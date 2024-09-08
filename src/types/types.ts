@@ -1,3 +1,9 @@
+export type IOrderForm = Omit<IOrder, 'total' | 'items'>;
+
+export type IFormErrors = Partial<Record<keyof IOrderForm, string>>;
+
+export type IPaymentMethod = 'cash' | 'card';
+
 export interface ICard {
     id: string;
     description: string;
@@ -17,16 +23,7 @@ export interface IAppState<T extends ICard, U extends Object> {
     basket: IBasket;
     orderData: IOrder;
     previewCard: ICard | null;
-    // setCardCatalog(items: T[]): void;
-    // setPreviewCard(item: ICard): void;
-    // appendItemInBasket(item: string): void;
-    // removeItemFromBasket(item: string): void;
-    // clearBasket(): void;
-    // validateOrder(): void;
-    // setOrderData(data: U): U;
 }
-
-export type IPaymentMethod = 'cash' | 'card';
 
 export interface IOrder {
     payment: IPaymentMethod;
@@ -37,6 +34,7 @@ export interface IOrder {
     items: string[];
 }
 
-export type IOrderForm = Omit<IOrder, 'total' | 'items'>
-
-export type IFormErrors = Partial<Record<keyof IOrderForm, string>>
+export interface IOrderResult {
+    id: string;
+    total: number;
+}

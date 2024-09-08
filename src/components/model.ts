@@ -1,4 +1,4 @@
-import { IAppState, ICard, IBasket, IOrder, IOrderForm, IFormErrors, IPaymentMethod } from "../types/model";
+import { IAppState, ICard, IBasket, IOrder, IOrderForm, IFormErrors, IPaymentMethod } from "../types/types";
 import { IEvents } from "./base/events";
 
 export class Card implements ICard {
