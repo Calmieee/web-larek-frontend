@@ -7,24 +7,36 @@ export interface ICard {
     price: number;
 }
 
-interface dataCardforBasket {
-    title: string;
-    price: number;
+export interface IBasket{
+    items: string[];
+    total: number;
 }
 
 export interface IAppState<T extends ICard, U extends Object> {
-    cardCatalog: T[];
-    basket: Record<string, dataCardforBasket>;
-    OrderData: U;
-    previewCard: T[];
-    setCardCatalog<T>(items: T[]): void;
-    setPreviewCard<T>(item: ICard): T[] ;
-    appendItemInBasket<T extends object>(id: string): T;
-    removeItemFromBasket(id: string): void;
-    clearBasket(): void;
-    getBasket<K>(): K;
-    getTotalPrice(): number;
-    validateOrder(): void;
-    setOrderData(data: U): U;
-    clearOrder(): void;
+    cardCatalog: ICard[];
+    basket: IBasket;
+    orderData: IOrder;
+    previewCard: ICard | null;
+    // setCardCatalog(items: T[]): void;
+    // setPreviewCard(item: ICard): void;
+    // appendItemInBasket(item: string): void;
+    // removeItemFromBasket(item: string): void;
+    // clearBasket(): void;
+    // validateOrder(): void;
+    // setOrderData(data: U): U;
 }
+
+export type IPaymentMethod = 'cash' | 'card';
+
+export interface IOrder {
+    payment: IPaymentMethod;
+    email: string;
+    phone: string;
+    address: string;
+    total: number;
+    items: string[];
+}
+
+export type IOrderForm = Omit<IOrder, 'total' | 'items'>
+
+export type IFormErrors = Partial<Record<keyof IOrderForm, string>>
