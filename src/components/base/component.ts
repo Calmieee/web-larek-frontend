@@ -1,42 +1,18 @@
+import { IEvents } from './events';
 
 export class Component<T> {
+    constructor(protected readonly container: HTMLElement) { }
 
-    protected constructor(protected readonly container: HTMLElement) {
+    toggleClass(className: string) {
+        this.container.classList.toggle(className);
     }
 
-    // Инструментарий для работы с DOM в дочерних компонентах
-
-    // Переключить класс
-    toggleClass(element: HTMLElement, className: string, force?: boolean) {
-        element.classList.toggle(className, force);
-    }
-
-    // Установить текстовое содержимое
-    protected setTextContent(element: HTMLElement, value: unknown) {
+    protected setText(element: HTMLElement, value: unknown) {
         if (element) {
             element.textContent = String(value);
         }
     }
 
-    // Сменить статус блокировки
-    setStatusDisabled(element: HTMLElement, state: boolean) {
-        if (element) {
-            if (state) element.setAttribute('disabled', 'disabled');
-            else element.removeAttribute('disabled');
-        }
-    }
-
-    // Скрыть
-    protected setHidden(element: HTMLElement) {
-        element.style.display = 'none';
-    }
-
-     // Показать
-     protected setVisible(element: HTMLElement) {
-        element.style.removeProperty('display');
-    }
-
-    // Установить изображение с алтернативным текстом
     protected setImage(element: HTMLImageElement, src: string, alt?: string) {
         if (element) {
             element.src = src;
@@ -46,9 +22,14 @@ export class Component<T> {
         }
     }
 
-    // Вернуть корневой DOM-элемент
-    render(data?: Partial<T>): HTMLElement {
+    render(data?: T): HTMLElement {
         Object.assign(this as object, data ?? {});
         return this.container;
+    }
+}
+
+export class View<T> extends Component<T> {
+    constructor(protected readonly events: IEvents, container: HTMLElement) {
+        super(container);
     }
 }

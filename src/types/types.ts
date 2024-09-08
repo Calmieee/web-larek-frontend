@@ -44,3 +44,9 @@ export interface IFilmAPI {
     getCardItem(id: string): Promise<ICard>;
     orderCards(order: IOrder): Promise<IOrderResult>;
 }
+
+export interface ICardActions {
+    onClick(event: MouseEvent): void;
+}
+
+export type CardModifier = 'compact' | 'full';
