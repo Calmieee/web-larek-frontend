@@ -1,11 +1,5 @@
 import { Api, ApiListResponse } from './base/api';
-import { IOrder, IOrderResult, ICard } from '../types/types';
-
-export interface IFilmAPI {
-    getCardList(): Promise<ICard[]>;
-    getCardItem(id: string): Promise<ICard>;
-    orderCards(order: IOrder): Promise<IOrderResult>;
-}
+import { IOrder, IOrderResult, ICard, IFilmAPI } from '../types/types';
 
 export class WebLarekAPI extends Api implements IFilmAPI {
     readonly cdn: string;

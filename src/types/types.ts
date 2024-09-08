@@ -38,3 +38,9 @@ export interface IOrderResult {
     id: string;
     total: number;
 }
+
+export interface IFilmAPI {
+    getCardList(): Promise<ICard[]>;
+    getCardItem(id: string): Promise<ICard>;
+    orderCards(order: IOrder): Promise<IOrderResult>;
+}
