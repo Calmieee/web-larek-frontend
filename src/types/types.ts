@@ -4,6 +4,8 @@ export type IFormErrors = Partial<Record<keyof IOrderForm, string>>;
 
 export type IPaymentMethod = 'cash' | 'card';
 
+export type CardModifier = 'compact' | 'full';
+
 export interface ICard {
     id: string;
     description: string;
@@ -49,4 +51,8 @@ export interface ICardActions {
     onClick(event: MouseEvent): void;
 }
 
-export type CardModifier = 'compact' | 'full';
+export interface IPage {
+    counter: number;
+    catalog: HTMLElement[];
+    locked: boolean;
+}
