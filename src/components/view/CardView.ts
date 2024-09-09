@@ -1,6 +1,6 @@
-import { Component } from './base/component';
-import { CardModifier, ICard, ICardActions } from '../types/types';
-import { bem, ensureElement } from '../utils/utils';
+import { Component } from '../base/component';
+import { CardModifier, ICard, ICardActions } from '../../types/types';
+import { bem, ensureElement } from '../../utils/utils';
 
 export class CardView extends Component<ICard> {
     protected _title: HTMLElement;

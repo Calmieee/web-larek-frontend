@@ -1,10 +1,10 @@
-import { Form } from "./common/Form";
-import { IOrderForm, IPaymentMethod } from "../types/types";
-import { EventEmitter } from "./base/events";
-import { ensureElement } from "../utils/utils";
+import { Form } from "../common/Form";
+import { IOrderForm, IPaymentMethod } from "../../types/types";
+import { EventEmitter } from "../base/events";
+import { ensureElement } from "../../utils/utils";
 
 
-export class Order extends Form<IOrderForm> {
+export class OrderView extends Form<IOrderForm> {
     protected _paymentCard: HTMLButtonElement;
     protected _paymentCash: HTMLButtonElement;
 

@@ -1,4 +1,4 @@
-import { Component } from "../base/component";
+import { View } from "../base/component";
 import {cloneTemplate, createElement, ensureElement} from "../../utils/utils";
 import {EventEmitter} from "../base/events";
 
@@ -7,13 +7,15 @@ interface IBasket {
     total: number
 }
 
-export class Basket extends Component<IBasket> {
+export class Basket extends View<IBasket> {
+    static template = ensureElement<HTMLTemplateElement>('#basket');
+
     protected _list: HTMLElement;
     protected _total: HTMLElement;
     protected _button: HTMLElement;
 
-    constructor(container: HTMLElement, protected events: EventEmitter) {
-        super(container);
+    constructor(events: EventEmitter) {
+        super(events, cloneTemplate(Basket.template));
 
         this._list = ensureElement<HTMLElement>('.basket__list', this.container);
         this._total = this.container.querySelector('.basket__total');
@@ -38,15 +40,7 @@ export class Basket extends Component<IBasket> {
         }
     }
 
-    set selected(items: string[]) {
-        if (items.length) {
-            this.setStatusDisabled(this._button, false);
-        } else {
-            this.setStatusDisabled(this._button, true);
-        }
-    }
-
     set total(total: number) {
-        this.setTextContent(this._total, total.toString() + ' синапсов');
+        this.setText(this._total, total.toString() + ' синапсов');
     }
 }
