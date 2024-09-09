@@ -1,5 +1,5 @@
 import { Component } from '../base/component';
-import { CardModifier, ICard, ICardActions } from '../../types/types';
+import { CardModifier, ICard, ICardActions } from '../../types';
 import { bem, ensureElement } from '../../utils/utils';
 
 export class CardView extends Component<ICard> {
@@ -19,7 +19,7 @@ export class CardView extends Component<ICard> {
         this._category = container.querySelector('.card__category');
         this._button = container.querySelector('.card__button');
         this._image = container.querySelector('.card__image');
-        this._description = container.querySelector('.card__description');
+        this._description = container.querySelector('.card__text');
 
         if (actions?.onClick) {
             if (this._button) {
@@ -56,7 +56,33 @@ export class CardView extends Component<ICard> {
 
     set category(value: string) {
         this.setText(this._category, value);
+    
+        if (this._category) {
+            // Сбрасываем класс, оставляем только основной класс
+            this._category.className = 'card__category';
+    
+            switch (value) {
+                case 'софт-скил':
+                    this._category.classList.add('card__category_soft');
+                    break;
+                case 'хард-скил':
+                    this._category.classList.add('card__category_hard');
+                    break;
+                case 'дополнительное':
+                    this._category.classList.add('card__category_additional');
+                    break;
+                case 'кнопка':
+                    this._category.classList.add('card__category_button');
+                    break;
+                case 'другое':
+                    this._category.classList.add('card__category_other');
+                    break;
+                default:
+                    this._category.classList.add('card__category_unknown');
+            }
+        }
     }
+    
 
     set image(value: string) {
         this.setImage(this._image, value, this.title);

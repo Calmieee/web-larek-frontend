@@ -1,14 +1,5 @@
-import { IAppState, ICard, IBasket, IOrder, IOrderForm, IFormErrors, IPaymentMethod } from "../types/types";
+import { ICard, IBasket, IOrder, IOrderForm, IFormErrors, IPaymentMethod } from "../types";
 import { IEvents } from "./base/events";
-
-export class Card implements ICard {
-    id: string;
-    description: string;
-    image: string;
-    title: string;
-    category: string;
-    price: number;
-}
 
 export class AppState {
     cardCatalog: ICard[]= [];
@@ -18,7 +9,7 @@ export class AppState {
     };
 
     orderData: IOrder = {
-        payment: 'cash',
+        payment: 'card',
         email: '',
         phone: '',
         address: '',
@@ -77,33 +68,32 @@ export class AppState {
         }
 
         if (!this.orderData.email) {
-            errors.payment = 'Необходимо указать email';
+            errors.email = 'Необходимо указать email';
         }
 
         if (!this.orderData.phone) {
-            errors.payment = 'Необходимо указать номер телефона';
+            errors.phone = 'Необходимо указать номер телефона';
         }
 
         if (!this.orderData.address) {
-            errors.payment = 'Необходимо указать адрес доставки';
+            errors.address = 'Необходимо указать адрес доставки';
         }
-
         this.formErrors = errors;
         this.events.emit('formErrors:change', this.formErrors);
         return Object.keys(errors).length === 0;
     }
-
+    
     setOrderData(field: keyof IOrderForm, value: string) {
         if (field === 'payment') {
             this.setPaymentMethod(value as IPaymentMethod);
         } else {
             this.orderData[field] = value;
         }
-
+        
         if (this.orderData.payment && this.validateOrder()) {
             this.orderData.total = this.basket.total;
             this.orderData.items = this.basket.items;
-            this.events.emit('order:set', this.orderData);
+            this.events.emit('order:ready', this.orderData);
         }
     };
 

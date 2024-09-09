@@ -1,7 +1,7 @@
 import {Component} from "../base/component";
 import {IEvents} from "../base/events";
 import { ensureElement } from "../../utils/utils";
-import { IPage } from "../../types/types";
+import { IPage } from "../../types";
 
 export class PageView extends Component<IPage> {
     protected _counter: HTMLElement;

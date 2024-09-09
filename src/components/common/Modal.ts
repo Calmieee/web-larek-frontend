@@ -1,4 +1,4 @@
-import {Component} from "../base/component";
+import {View} from "../base/component";
 import {ensureElement} from "../../utils/utils";
 import {IEvents} from "../base/events";
 
@@ -6,12 +6,12 @@ interface IModalData {
     content: HTMLElement;
 }
 
-export class Modal extends Component<IModalData> {
+export class Modal extends View<IModalData> {
     protected _closeButton: HTMLButtonElement;
     protected _content: HTMLElement;
 
     constructor(container: HTMLElement, protected events: IEvents) {
-        super(container);
+        super(events, container);
 
         this._closeButton = ensureElement<HTMLButtonElement>('.modal__close', container);
         this._content = ensureElement<HTMLElement>('.modal__content', container);

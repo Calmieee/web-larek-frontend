@@ -1,5 +1,5 @@
 import { Api, ApiListResponse } from './base/api';
-import { IOrder, IOrderResult, ICard, IFilmAPI } from '../types/types';
+import { IOrder, IOrderResult, ICard, IFilmAPI } from '../types';
 
 export class WebLarekAPI extends Api implements IFilmAPI {
     readonly cdn: string;

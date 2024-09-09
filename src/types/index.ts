@@ -1,4 +1,4 @@
-export type IOrderForm = Omit<IOrder, 'total' | 'items' | 'valid'>;
+export type IOrderForm = Omit<IOrder, 'total'|'items' >;
 
 export type IFormErrors = Partial<Record<keyof IOrderForm, string>>;
 
@@ -8,23 +8,16 @@ export type CardModifier = 'compact' | 'full';
 
 export interface ICard {
     id: string;
+    name: string;
+    price: number | null;
     description: string;
     image: string;
-    title: string;
     category: string;
-    price: number | null;
 }
 
 export interface IBasket{
     items: string[];
     total: number;
-}
-
-export interface IAppState<T extends ICard, U extends Object> {
-    cardCatalog: ICard[];
-    basket: IBasket;
-    orderData: IOrder;
-    previewCard: ICard | null;
 }
 
 export interface IOrder {
@@ -34,7 +27,6 @@ export interface IOrder {
     address: string;
     total: number;
     items: string[];
-    valid?: boolean;
 }
 
 export interface IOrderResult {
