@@ -12,7 +12,7 @@ export interface ICard {
     image: string;
     title: string;
     category: string;
-    price: number;
+    price: number | null;
 }
 
 export interface IBasket{
@@ -28,6 +28,7 @@ export interface IAppState<T extends ICard, U extends Object> {
 }
 
 export interface IOrder {
+    valid?: boolean;
     payment: IPaymentMethod;
     email: string;
     phone: string;

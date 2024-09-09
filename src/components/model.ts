@@ -10,8 +10,8 @@ export class Card implements ICard {
     price: number;
 }
 
-export class AppState<T extends ICard, U extends Object> implements IAppState<T, U> {
-    cardCatalog: T[]= [];
+export class AppState {
+    cardCatalog: ICard[]= [];
     basket: IBasket = {
         items: [],
         total: 0
@@ -33,7 +33,7 @@ export class AppState<T extends ICard, U extends Object> implements IAppState<T,
 
     }
     
-    setCardCatalog(items: T[]): void {
+    setCardCatalog(items: ICard[]): void {
         this.cardCatalog = items;
         this.events.emit('catalog:init', this.cardCatalog);
     }
@@ -41,6 +41,10 @@ export class AppState<T extends ICard, U extends Object> implements IAppState<T,
     setPreviewCard(item: ICard): void {
         this.previewCard = item;
         this.events.emit('preview:change', this.previewCard);
+    }
+
+    inBasket(item: ICard) {
+        return this.basket.items.includes(item.id);
     }
 
     appendItemInBasket(item: ICard) {
