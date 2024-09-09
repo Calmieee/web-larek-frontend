@@ -39,11 +39,11 @@ export class Form<T> extends Component<IFormState>{
     }
 
     set valid(value: boolean) {
-        this.setStatusDisabled(this._buttonSumbit, !value);
+        this._buttonSumbit.disabled = !value;
     }
 
     set errors(value: string) {
-        this.setTextContent(this._errors, value);
+        this.setText(this._errors, value);
     }
 
     render(state: Partial<T> & IFormState) {
