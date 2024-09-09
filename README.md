@@ -92,25 +92,21 @@ yarn build
 
 1. Класс `Basket` <br>
 Отображает содержимое корзины
-Конструктор:
 ```ts
  constructor(events: EventEmitter)
 ```
 2. Класс `Form` <br>
 Управляет отображением валидации и ошибок.
-Конструктор:
 ```ts
 constructor(protected container: HTMLFormElement, protected events: IEvents)
 ```
 3. Класс `Modal` <br>
 Управляет отображением модального окна и его контента
-Конструктор:
 ```ts
 constructor(container: HTMLElement, protected events: IEvents)
 ```
 4. Класс `Success` <br>
 Отображает контент окна с успешной оплатой
-Конструктор :
 ```ts
 constructor(container: HTMLElement, actions: ISuccessActions)
 ```
