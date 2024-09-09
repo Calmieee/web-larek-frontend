@@ -2,8 +2,7 @@ import { Component } from "../base/component";
 import {ensureElement} from "../../utils/utils";
 
 interface ISuccess {
-    title: string;
-    description: string;
+    total: number;
 }
 
 interface ISuccessActions {
@@ -11,27 +10,21 @@ interface ISuccessActions {
 }
 
 export class Success extends Component<ISuccess> {
-    protected _title: HTMLElement;
-    protected _description: HTMLElement;
+    protected _total: HTMLElement;
     protected _close: HTMLButtonElement;
 
     constructor(container: HTMLElement, actions: ISuccessActions) {
         super(container);
 
+        this._total = ensureElement<HTMLButtonElement>('.order-success__description', this.container);
         this._close = ensureElement<HTMLButtonElement>('.order-success__close', this.container);
-		this._title = ensureElement<HTMLElement>('.order-success__title', this.container);
-        this._description = ensureElement<HTMLElement>('.order-success__description', this.container);
 
         if (actions?.onClick) {
             this._close.addEventListener('click', actions.onClick);
         }
     }
 
-    set title(value: string) {
-        this.setTextContent(this._title, value);
+    set total(value: number) {
+        this.setText(this._total, `Списано ${value} синапсов`);
     }
-
-    set description(value: string) {
-		this.setTextContent(this._description, value);
-	}
 }
