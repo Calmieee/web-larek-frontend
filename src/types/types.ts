@@ -1,4 +1,4 @@
-export type IOrderForm = Omit<IOrder, 'total' | 'items'>;
+export type IOrderForm = Omit<IOrder, 'total' | 'items' | 'valid'>;
 
 export type IFormErrors = Partial<Record<keyof IOrderForm, string>>;
 
@@ -28,13 +28,13 @@ export interface IAppState<T extends ICard, U extends Object> {
 }
 
 export interface IOrder {
-    valid?: boolean;
     payment: IPaymentMethod;
     email: string;
     phone: string;
     address: string;
     total: number;
     items: string[];
+    valid?: boolean;
 }
 
 export interface IOrderResult {

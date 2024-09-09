@@ -19,7 +19,7 @@ export class WebLarekAPI extends Api implements IFilmAPI {
     }
 
     getCardList(): Promise<ICard[]> {
-        return this.get('/Card').then((data: ApiListResponse<ICard>) =>
+        return this.get('/product').then((data: ApiListResponse<ICard>) =>
             data.items.map((item) => ({
                 ...item,
                 image: this.cdn + item.image
