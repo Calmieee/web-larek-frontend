@@ -94,19 +94,7 @@ yarn build
 Отображает содержимое корзины
 Конструктор:
 ```ts
- constructor(events: EventEmitter) {
-        super(events, cloneTemplate(Basket.template));
-
-        this._list = ensureElement<HTMLElement>('.basket__list', this.container);
-        this._total = ensureElement<HTMLElement>('.basket__price', this.container);
-        this._button = ensureElement<HTMLElement>('.basket__button', this.container);
-
-        this._button.addEventListener('click', () => {
-            events.emit('order:open');
-        });
-
-        this.items = [];
-    }
+ constructor(events: EventEmitter)
 ```
 2. Класс `Form` <br>
 Управляет отображением валидации и ошибок.
